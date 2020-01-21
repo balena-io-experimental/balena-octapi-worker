@@ -1,0 +1,21 @@
+FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:stretch
+
+#E nter the proper architecture for your device: amd64=NUC or QEMU; armv7=RPi 4
+ARG ARCH="amd64"
+
+# Install the core apps
+RUN install_packages apt-utils wget tar gzip
+
+# Install Node Exporter
+RUN export DEBIAN_FRONTEND=noninteractive && \
+    wget -qO - https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-${ARCH}.tar.gz > node_exporter.tar.gz && \
+    tar zxf node_exporter.tar.gz && \
+    mv node_exporter-* node_exporter && \
+    cp node_exporter/node_exporter /bin 
+
+# Expose the port Prometheus uses
+EXPOSE 9100
+
+# Start Node Exporter
+CMD [ "/bin/node_exporter" ]
+
