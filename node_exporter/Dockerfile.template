@@ -1,21 +1,12 @@
-FROM balenalib/%%BALENA_MACHINE_NAME%%-debian:stretch
+FROM balenalib/%%BALENA_MACHINE_NAME%%-alpine
+WORKDIR /app
 
-#E nter the proper architecture for your device: amd64=NUC or QEMU; armv7=RPi 4
-ARG ARCH="amd64"
-
-# Install the core apps
-RUN install_packages apt-utils wget tar gzip
-
-# Install Node Exporter
-RUN export DEBIAN_FRONTEND=noninteractive && \
-    wget -qO - https://github.com/prometheus/node_exporter/releases/download/v0.18.1/node_exporter-0.18.1.linux-${ARCH}.tar.gz > node_exporter.tar.gz && \
-    tar zxf node_exporter.tar.gz && \
-    mv node_exporter-* node_exporter && \
-    cp node_exporter/node_exporter /bin 
+RUN echo "http://dl-cdn.alpinelinux.org/alpine/edge/testing/" >> /etc/apk/repositories && \
+    apk add --no-cache prometheus-node-exporter
 
 # Expose the port Prometheus uses
 EXPOSE 9100
 
 # Start Node Exporter
-CMD [ "/bin/node_exporter" ]
+CMD [ "/usr/bin/node_exporter" ]
 
