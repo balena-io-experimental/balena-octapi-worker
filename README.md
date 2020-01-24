@@ -6,7 +6,7 @@ This is a containerized version of the [OctaPi project](https://projects.raspber
 OctaPi uses the term "Client" to define the machine on which you run your Python scripts. It sends jobs to what OctaPi calls "Servers," which return their results to the Client node. For better clarity in the balenaCloud use case, I've renamed the "Client" to "Master", and "Server" to "Worker". Please use [this repository](https://github.com/jtonello/balena-octapi-master) to deploy the Master node.
 
 ### Installation
-Deploying workers is straightforward, with a _docker-compose.yml_ and associated _Dockerfile.template_. The latter primarily provides the ability to run sshd, and makes the OctaPi scripts available. This worker also includes the optional Node Exporter service, which will make the node available to [Prometheus and Grafana](https://github.com/balena-io-playground/balena-prometheus-grafana).
+Deploying workers is straightforward, with a _docker-compose.yml_ and associated _Dockerfile.template_. The latter primarily provides the ability to run sshd, and makes the OctaPi scripts available. This worker also includes the optional Node Exporter service, which will make the node available to [Prometheus and Grafana](https://github.com/balena-io-playground/balena-prometheus-grafana). If you don't want that, edit the _docker-compose.yml_ file to remove it.
 
 The workers listen initially for an SSH connection from the Master, so you need to seed the master and workers with SSH keys. You can reuse these examples or generate your own by running _ssh-keygen_ (without a password) and adding the _id_rsa.pub_ key and copying it to _authorized_keys_. The .ssh/config file disables StrictHostKeyChecking so initial logins by the master to the workers are non-interactive.
 ```
@@ -24,7 +24,7 @@ The workers listen initially for an SSH connection from the Master, so you need 
 ### Deploy
 Clone this repository, change into the balena-octapi-worker directory and push to your application:
 ```
- $ git clone git@github.com:jtonello/balena-octapi-worker.git
+ $ git clone git@github.com:balena-io-playground/balena-octapi-worker.git
  $ cd balena-octapi-worker
  $ balena push <appname>
 ```
