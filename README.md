@@ -5,7 +5,7 @@ This is a containerized version of the [OctaPi project](https://projects.raspber
 
 OctaPi uses the term "Client" to define the machine on which you run your Python scripts. It sends jobs to what OctaPi calls "Servers," which return their results to the Client node. For better clarity in the balenaCloud use case, I've renamed the "Client" to "Master", and "Server" to "Worker". Please use [this repository](https://github.com/balena-io-playground/balena-octapi-master) to deploy the Master node.
 
-![Compute result](http://tonellolabs.com/octapi-master.png)
+![Compute result](http://tonellolabs.com/images/octapi-master.png)
 
 ### Installation
 Deploying workers is straightforward, with a _docker-compose.yml_ and associated _Dockerfile.template_. The latter primarily provides the ability to run sshd, and makes the OctaPi scripts available. This worker also includes the optional Node Exporter service, which will make the node available to [Prometheus and Grafana](https://github.com/balena-io-playground/balena-prometheus-grafana). If you don't want that, edit the _docker-compose.yml_ file to remove it.
