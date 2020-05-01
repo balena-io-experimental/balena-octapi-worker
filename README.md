@@ -26,7 +26,7 @@ The workers listen initially for an SSH connection from the Master, so you need 
 ### Deploy
 Clone this repository, change into the balena-octapi-worker directory and push to your application:
 ```
- $ git clone git@github.com:balena-io-playground/balena-octapi-worker.git
+ $ git clone git@github.com:balena-io-examples/balena-octapi-worker.git
  $ cd balena-octapi-worker
  $ balena push <appname>
 ```
