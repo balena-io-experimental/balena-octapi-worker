@@ -3,7 +3,7 @@
 ### Introduction
 This is a containerized version of the [OctaPi project](https://projects.raspberrypi.org/en/projects/build-an-octapi/1), which creates a distributed Raspberry Pi cluster to run computations that take advantage of the CPU and RAM on many physical devices. It uses Python and _dispy_ at its core. With this implementation, you can turn any balenaCloud device into a worker node without having to manually flash SD cards for a single-use IoT implementation.
 
-OctaPi uses the term "Client" to define the machine on which you run your Python scripts. It sends jobs to what OctaPi calls "Servers," which return their results to the Client node. For better clarity in the balenaCloud use case, I've renamed the "Client" to "Master", and "Server" to "Worker". Please use [this repository](https://github.com/balena-io-examples/balena-octapi-master) to deploy the Master node.
+OctaPi uses the term "Client" to define the machine on which you run your Python scripts. It sends jobs to what OctaPi calls "Servers," which return their results to the Client node. For better clarity in the balenaCloud use case, I've renamed the "Client" to "Master", and "Server" to "Worker". Please use [this repository](https://github.com/balenalabs-incubator/balena-octapi-master) to deploy the Master node.
 
 ![Compute result](http://tonellolabs.com/images/octapi-master.png)
 
@@ -26,7 +26,7 @@ The workers listen initially for an SSH connection from the Master, so you need 
 ### Deploy
 Clone this repository, change into the balena-octapi-worker directory and push to your application:
 ```
- $ git clone git@github.com:balena-io-examples/balena-octapi-worker.git
+ $ git clone git@github.com:balenalabs-incubator/balena-octapi-worker.git
  $ cd balena-octapi-worker
  $ balena push <appname>
 ```
